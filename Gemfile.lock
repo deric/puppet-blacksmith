@@ -74,6 +74,7 @@ PLATFORMS
 DEPENDENCIES
   aruba
   cucumber
+  puppet (>= 2.7.16)
   puppet-blacksmith!
   puppetlabs_spec_helper
   rake

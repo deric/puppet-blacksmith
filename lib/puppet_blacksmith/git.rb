@@ -1,4 +1,5 @@
 require 'open3'
+require 'open3_backport' if RUBY_VERSION < '1.9'
 
 module Blacksmith
   class Git
