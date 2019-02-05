@@ -139,11 +139,16 @@ module Blacksmith
           Rake::Task["clean"].execute
         end
 
-        desc "Release the Puppet module, doing a clean, build, bump_commit, tag, push and git push."
-        release_dependencies = @build ? [:clean, :build, :tag, :bump_commit, :push] : [:clean, :tag, :bump_commit]
+        desc "Release the Puppet module, doing a clean, build, bump_commit, tag, git push and finally release to forge."
+        release_dependencies = @build ? [:clean, :build, :tag, :bump_commit] : [:clean, :tag, :bump_commit]
         task :release => release_dependencies do
           puts "Pushing to remote git repo"
           git.push!
+          # firstly try syncing with git. If all good, then push to forge!
+          m = Blacksmith::Modulefile.new
+          forge = Blacksmith::Forge.new
+          puts "Uploading to Puppet Forge #{forge.username}/#{m.name}"
+          forge.push!(m.name)
         end
 
         desc "Set specific module dependency version"
