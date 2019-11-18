@@ -8,7 +8,7 @@ module Blacksmith
 
     # Pattern to use for tags, %s is replaced with the actual version
     def commit_message_pattern
-      @commit_message_pattern || "[blacksmith] Bump version to %s"
+      @commit_message_pattern || "Bump version to %s"
     end
 
     def tag_pattern

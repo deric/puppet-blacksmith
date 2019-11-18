@@ -80,7 +80,7 @@ describe 'Blacksmith::Git' do
       end
 
       it "should commit the metadata file" do
-        expect(subject.commit_modulefile!(version)).to match(/\[blacksmith\] Bump version to #{version}/)
+        expect(subject.commit_modulefile!(version)).to match(/Bump version to #{version}/)
       end
     end
 
